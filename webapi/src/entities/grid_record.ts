@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm'
 import "reflect-metadata"
 
 // ユーザー
-@Entity('grid')
+@Entity('grids')
 export class GridRecord extends BaseEntity {
 
     @PrimaryGeneratedColumn()
@@ -18,10 +18,10 @@ export class GridRecord extends BaseEntity {
     chip: number
 
     @Column()
-    inner: string
+    inner_wheel: string
 
     @Column()
-    outer: string
+    outer_wheel: string
 
     @Column()
     cards: string
@@ -34,4 +34,10 @@ export class GridRecord extends BaseEntity {
 
     @Column()
     step: string
+
+    @Column()
+    created_at: string
+
+    @Column()
+    updated_at: string
 }

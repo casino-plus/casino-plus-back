@@ -1,12 +1,12 @@
 -- ルームグリッド
-CREATE TABLE grid
+CREATE TABLE grids
 (
    player_id varchar(7) NOT NULL PRIMARY KEY, -- プレイヤーID
    room_id varchar(5) NOT NULL, -- ルームID
    seat integer NOT NULL, -- シート
    chip integer NOT NULL, -- チップ
-   inner varchar(1) NOT NULL, -- インナー
-   outer varchar(2) NOT NULL, -- アウター
+   inner_wheel varchar(1) NOT NULL, -- インナー
+   outer_wheel varchar(2) NOT NULL, -- アウター
    cards varchar(8) NOT NULL, -- カードリスト
    bet varchar(3) NOT NULL, -- ベット
    put varchar(2) NOT NULL, -- プット
@@ -16,7 +16,7 @@ CREATE TABLE grid
 );
 
 -- プレイヤー
-CREATE TABLE player
+CREATE TABLE players
 (
    id varchar(7) NOT NULL PRIMARY KEY, -- プレイヤーID
    room_id varchar(5) NOT NULL, -- ルームID

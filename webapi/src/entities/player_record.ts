@@ -22,4 +22,10 @@ export class PlayerRecord extends BaseEntity {
 
     @Column()
     icon_url: string
+
+    @Column()
+    created_at: string
+
+    @Column()
+    updated_at: string
 }
