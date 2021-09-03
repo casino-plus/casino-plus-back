@@ -25,11 +25,11 @@ export class Grid extends BaseEntity {
 
   // ホイールインナー
   @Column()
-  inner: string;
+  wheel_inner: string;
 
   // ホイールアウター
   @Column()
-  outer: string;
+  wheel_outer: string;
 
   // カード配列文字列
   @Column()
