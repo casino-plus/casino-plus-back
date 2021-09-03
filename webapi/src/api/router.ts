@@ -3,13 +3,13 @@ import multer from "multer";
 import fs from "fs";
 import * as http from "../utils/http";
 // routes
-import * as RemenberPlayerID from "./routes/remenber-player-id";
-import * as JoinRoom from "./routes/join-room";
-import * as BetAction from "./routes/bet-action";
-import * as PutAction from "./routes/put-action";
+import * as RemenberPlayerID from "./routes/remember_player_id";
+import * as JoinRoom from "./routes/join_room";
+import * as BetAction from "./routes/bet_action";
+import * as PutAction from "./routes/put_action";
 import * as GetHello from "./routes/get_hello";
 import * as PostTest from "./routes/post_test";
-import * as ScanRoom from "./routes/scan-room";
+import * as ScanRoom from "./routes/scan_room";
 
 // routing
 export function run(app: Express) {
