@@ -1,7 +1,7 @@
--- ルームグリッド
+-- グリッド
 CREATE TABLE grids
 (
-   id SERIAL PRIMARY KEY
+   id varchar(7) PRIMARY KEY,
    player_id varchar(7) NOT NULL, -- プレイヤーID
    room_id varchar(5) NOT NULL, -- ルームID
    seat integer NOT NULL, -- シート

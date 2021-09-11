@@ -6,17 +6,15 @@ import { User } from "../types/user";
 // テスト実行
 export function run() {
   // ユーザーリポジトリのテスト
-
   // ユーザーを保存してみる
-  const user = new User();
-  user.nickname = "Taro";
-  user.chip = 40;
-  user.id = 3;
-  user.mail = "sample.com";
-  user.created_at = "C";
-  user.updated_at = "D";
-  create(user);
-
+  // const user = new User();
+  // user.nickname = "Taro";
+  // user.chip = 40;
+  // user.id = 3;
+  // user.mail = "sample.com";
+  // user.created_at = "C";
+  // user.updated_at = "D";
+  // create(user);
   //
   // 最初の一回に実行されてしまうと、存在せずにエラーになるのでコメントアウト
   //
