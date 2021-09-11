@@ -15,7 +15,7 @@ import { Grid } from "../types/grid";
 
 function grids(game: Game): Grid[] {
   let grids = game.board.sideSpaces.map(function (space) {
-    let playerID = game.id + "S" + String(space.seat);
+    let playerID = game.roomID + "S" + String(space.seat);
     let bet = space.bet ?? "";
     let put = space.put ?? "";
     let wheelInner = game.board.innerSpaces.find(
@@ -29,7 +29,7 @@ function grids(game: Game): Grid[] {
     let grid = new Grid();
     grid.id = playerID;
     grid.player_id = playerID;
-    grid.room_id = game.id;
+    grid.room_id = game.roomID;
     grid.seat = space.seat;
     grid.chip = space.chip;
     grid.wheel_inner = wheelInner;
