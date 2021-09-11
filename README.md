@@ -27,16 +27,20 @@ $ docker compose down
 <br>
 
 # WebAPI
-- /api/roulette-poker/join-room
+- /roulette-poker/join-room
   - 新しいルームに参加
-- /api/roulette-poker/bet-action
+- /roulette-poker/bet-action
   - Betのアクションを行う
-- /api/roulette-poker/put-action
+- /roulette-poker/put-action
   - Putのアクションを行う
-- /api/roulette-poker/scan-room
-  - ルーム状況を取得する
-- /api/roulette-poker/remenber-player-id
+- /roulette-poker/load-game
+  - ゲーム状況を取得する
+- /roulette-poker/remenber-player-id
   - ユーザーに割り振られたプレイヤーIDの確認
+- /users/:id/icon
+  - ユーザーアイコンのアップロード
+- /users/:id/icon.png
+  - ユーザーアイコンの閲覧 
 
 # 技術
 
