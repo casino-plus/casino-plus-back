@@ -1,16 +1,16 @@
-import * as http from '../http'
+import * as HTTP from "../../utils/http";
 
-export class API implements http.API {
-    run(req: Request): Response {
-        const reqBody = { player_id: "スタブ" }
-        return reqBody
-    }
-}
+type Request = HTTP.Request & {
+  user_id: string;
+};
 
-type Request = http.RequestBody & {
-    user_id: string
-}
+type Response = HTTP.Response & {
+  player_id: string;
+};
 
-type Response = http.ResponseBody & {
-    player_id: string
+export class API implements HTTP.API {
+  run(req: Request): Response {
+    const res = { player_id: "スタブ" };
+    return res;
+  }
 }

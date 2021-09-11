@@ -1,9 +1,18 @@
-import * as http from "../../utils/http";
+import * as HTTP from "../../utils/http";
+
+// リクエストパラメータ
+export type Request = HTTP.Request & {
+  param: string;
+};
+// レスポンスパラメータ
+export type Response = HTTP.Response & {
+  param: string;
+};
 
 // テストAPI
-export class API implements http.API {
+export class API implements HTTP.API {
   // 動的ルーティングで受け取りたい値をコンストラクタに設定する
-  // http://localhost/test/7 の場合は「7」
+  // HTTP://localhost/test/7 の場合は「7」
   id: string;
   constructor(id: string) {
     this.id = id;
@@ -18,12 +27,3 @@ export class API implements http.API {
     return res;
   }
 }
-
-// リクエストパラメータを定義
-export type Request = http.RequestBody & {
-  param: string;
-};
-// レスポンスパラメータを定義
-export type Response = http.ResponseBody & {
-  param: string;
-};

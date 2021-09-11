@@ -6,9 +6,9 @@ import * as RemenberPlayerID from "./routes/remember_player_id";
 import * as JoinRoom from "./routes/join_room";
 import * as BetAction from "./routes/bet_action";
 import * as PutAction from "./routes/put_action";
-import * as GetHello from "./routes/get_hello";
+import * as GetHello from "./routes/welcome";
 import * as PostTest from "./routes/post_test";
-import * as ScanRoom from "./routes/scan_room";
+import * as LoadGame from "./routes/load_game";
 import * as UploadUserIcon from "./routes/upload_user_icon";
 
 // routing
@@ -40,8 +40,8 @@ export function run(app: Express) {
     const api = new BetAction.API();
     runAPI(api, req, res);
   });
-  app.get("/roulette-poker/scan-room", (req: Request, res: Response) => {
-    const api = new ScanRoom.API();
+  app.get("/roulette-poker/load-game", (req: Request, res: Response) => {
+    const api = new LoadGame.API();
     runAPI(api, req, res);
   });
 
@@ -63,9 +63,9 @@ export function run(app: Express) {
 }
 
 // APIを稼働する
-function runAPI(api: http.API, req: Request, res: Response) {
+function runAPI(api: Http.API, req: Request, res: Response) {
   const json = JSON.stringify(req.body);
-  const reqBody: http.RequestBody = JSON.parse(json);
+  const reqBody: Http.Request = JSON.parse(json);
   const resBody = api.run(reqBody);
   res.json(resBody);
 }

@@ -1,19 +1,16 @@
-import * as http from '../http'
-import { CodableRoom } from '../models'
-import * as stub from '../stub/stub01'
+import * as HTTP from "../../utils/http";
+import * as APIModel from "../../types/api_models";
 
-export class API implements http.API {
-    run(req: Request): Response {
-        const reqBody = {room: stub.room}
-        return reqBody
-    }
-}
+type Request = HTTP.Request & {
+  player_id: string;
+  put: string;
+};
 
-type Request = http.RequestBody & {
-    player_id: string
-    put: string
-}
+type Response = HTTP.Response & {};
 
-type Response = http.ResponseBody & {
-    room: CodableRoom
+export class API implements HTTP.API {
+  run(req: Request): Response {
+    const res = {};
+    return res;
+  }
 }
