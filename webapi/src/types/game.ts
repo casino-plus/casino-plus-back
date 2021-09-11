@@ -1,3 +1,19 @@
+export {
+  Card,
+  WheelInner,
+  WheelOuter,
+  Face,
+  Mark,
+  Combo,
+  Step,
+  BetLevel,
+  Seat,
+  InnerSpace,
+  OuterSpace,
+  SideSpace,
+  Board,
+};
+
 const Card = {
   As: "As",
   Ah: "Ah",
@@ -82,34 +98,36 @@ const BetLevel = {
 type BetLevel = typeof BetLevel[keyof typeof BetLevel];
 
 const Seat = {
-  S0: "S0",
-  S1: "S1",
-  S2: "S2",
-  S3: "S3",
+  S0: 0,
+  S1: 1,
+  S2: 2,
+  S3: 3,
 } as const;
 type Seat = typeof Seat[keyof typeof Seat];
 
-type InnerSpace = {
-  seat: Seat;
-  wheelInner: WheelInner;
-};
+class InnerSpace {
+  constructor(public seat: Seat, public wheelInner: WheelInner) {}
+}
 
-type OuterSpace = {
-  seat: Seat;
-  wheelOuter: WheelOuter;
-};
+class OuterSpace {
+  constructor(public seat: Seat, public wheelOuter: WheelOuter) {}
+}
 
-type SideSpace = {
-  seat: Seat;
-  put?: Card;
-  bet?: BetLevel;
-  chip: number;
-  step: Step;
-  cards: [Card];
-};
+class SideSpace {
+  constructor(
+    public seat: Seat,
+    public step: Step,
+    public chip: number,
+    public cards: Card[],
+    public bet?: BetLevel,
+    public put?: Card
+  ) {}
+}
 
-type Board = {
-  innerSpaces: InnerSpace[];
-  outerSpaces: OuterSpace[];
-  sideSpaces: SideSpace[];
-};
+class Board {
+  constructor(
+    public innerSpaces: InnerSpace[],
+    public outerSpaces: OuterSpace[],
+    public sideSpaces: SideSpace[]
+  ) {}
+}

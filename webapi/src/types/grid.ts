@@ -5,15 +5,15 @@ import "reflect-metadata";
 @Entity("grids")
 export class Grid extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   // プレイヤーID
   @Column()
-  player_id: number;
+  player_id: string;
 
   // ルームID
   @Column()
-  room_id: number;
+  room_id: string;
 
   // シート
   @Column()
