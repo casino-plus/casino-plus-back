@@ -1,6 +1,21 @@
 version: "3"
 
 services:
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: casinoplus
+      MONGO_INITDB_ROOT_PASSWORD: casinoplus
+      MONGO_INITDB_DATABASE: casinoplus
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo:/data/mongo
+      - ./mongo/init:/docker-entrypoint-initdb.d
+    networks:
+      - app-net
+    command: mongod --quiet --logpath /dev/null
+
   db:
     container_name: "db"
     build: ./db
@@ -22,12 +37,13 @@ services:
 
   webapi:
     depends_on:
-        - db # db起動後に立ち上げる
+      - db # db起動後に立ち上げる
+      - mongo
     links:
-        - db:db
+      - db:db
+      - mongo:mongo
     container_name: "webapi"
     build: ./webapi
-    # tty: true
     ports:
       - 3000:3000
     volumes:
@@ -39,4 +55,3 @@ services:
 networks:
   app-net:
     driver: bridge
-

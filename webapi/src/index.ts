@@ -20,8 +20,9 @@ app.use(
 // 3000ポートで待ち受け
 app.listen(3000, () => {
   console.log("Start on port 3000.");
+
+  // テスト実行
+  test.run();
 });
 // ルーティング
 router.run(app);
-// テスト実行
-test.run();
