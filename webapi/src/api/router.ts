@@ -31,7 +31,7 @@ export function run(app: Express) {
     const api = new JoinRoom.API();
     runAPI(api, req, res);
   });
-  app.post("/roulette-poker/put-action", (req: Request, res: Response) => {
+  app.post("/game/put-action", (req: Request, res: Response) => {
     const api = new PutAction.API();
     runAPI(api, req, res);
   });
@@ -59,6 +59,22 @@ export function run(app: Express) {
     res.type("png");
     res.send(data);
   });
+
+  // 新規ユーザー登録
+  app.post(
+    "/users",
+    CreateUser.upload,
+    async (request: Request, response: Response) => {
+      const file = request.file;
+      const json = request.body["json"];
+
+      const reqBody: CreateUser.Request = JSON.parse(json);
+      const api = new CreateUser.API(file);
+      const resBody = await api.run(reqBody);
+
+      response.json(resBody);
+    }
+  );
 }
 
 // APIを稼働する
