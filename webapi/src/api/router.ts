@@ -6,29 +6,28 @@ import * as RemenberPlayerID from "./routes/remember_player_id";
 import * as JoinRoom from "./routes/join_room";
 import * as BetAction from "./routes/bet_action";
 import * as PutAction from "./routes/put_action";
-import * as GetHello from "./routes/welcome";
+import * as Welcome from "./routes/welcome";
 import * as PostTest from "./routes/post_test";
 import * as LoadGame from "./routes/load_game";
 import * as UploadUserIcon from "./routes/upload_user_icon";
+import * as CreateUser from "./routes/create_user";
+import * as APIModel from "../types/api_models";
 
 // routing
 export function run(app: Express) {
   app.get("/", (req: Request, res: Response) => {
-    const api = new GetHello.API();
+    const api = new Welcome.API();
     runAPI(api, req, res);
   });
   app.post("/test/:id", (req: Request, res: Response) => {
     const api = new PostTest.API(req.params.id);
     runAPI(api, req, res);
   });
-  app.get(
-    "/roulette-poker/remenber-player-id",
-    (req: Request, res: Response) => {
-      const api = new RemenberPlayerID.API();
-      runAPI(api, req, res);
-    }
-  );
-  app.post("/roulette-poker/join-room", (req: Request, res: Response) => {
+  app.get("/game/remenber-player-id", (req: Request, res: Response) => {
+    const api = new RemenberPlayerID.API();
+    runAPI(api, req, res);
+  });
+  app.post("/game/join-room", (req: Request, res: Response) => {
     const api = new JoinRoom.API();
     runAPI(api, req, res);
   });
@@ -36,11 +35,11 @@ export function run(app: Express) {
     const api = new PutAction.API();
     runAPI(api, req, res);
   });
-  app.post("/roulette-poker/bet-action", (req: Request, res: Response) => {
+  app.post("/game/bet-action", (req: Request, res: Response) => {
     const api = new BetAction.API();
     runAPI(api, req, res);
   });
-  app.get("/roulette-poker/load-game", (req: Request, res: Response) => {
+  app.get("/game/load-game", (req: Request, res: Response) => {
     const api = new LoadGame.API();
     runAPI(api, req, res);
   });

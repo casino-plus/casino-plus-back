@@ -13,7 +13,7 @@ export class UserOption extends BaseEntity {
 
   // プレイヤーID
   @Column()
-  player_id: string;
+  player_id: string = "";
 
   // アイコンURL
   @Column()
@@ -21,11 +21,11 @@ export class UserOption extends BaseEntity {
 
   // 自己紹介
   @Column()
-  self_intro: string;
+  self_intro: string = "";
 
   @Column()
-  created_at: string;
+  created_at: string = new Date().toISOString();
 
   @Column()
-  updated_at: string;
+  updated_at: string = new Date().toISOString();
 }

@@ -1,21 +1,32 @@
-import { createConnection, getRepository } from "typeorm";
-import { config } from "../config/db";
+import { createConnection, getRepository, getConnectionManager } from "typeorm";
+import { options } from "../config/db";
 import { UserOption } from "../types/user_option";
 
-export function create(userOption: UserOption) {
-  createConnection(config)
-    .then(async (connection) => {
-      await connection.manager.save(userOption);
-    })
-    .catch((error) => console.log(error));
+export { create, readById, update, deleteById };
+
+// CREATE
+function create(userOption: UserOption): Promise<number> {
+  return new Promise((resolve, reject) => {
+    createConnection(options)
+      .then(async (connection) => {
+        await connection.manager.save(userOption);
+        resolve(userOption.id);
+      })
+      .catch(async (error) => {
+        if (error.name === "AlreadyHasActiveConnectionError") {
+          const existentConn = getConnectionManager().get("default");
+          await existentConn.manager.save(userOption);
+          resolve(userOption.id);
+        } else {
+          console.log("予期せぬエラーが発生しました", error);
+        }
+      });
+  });
 }
 
 // READ
-export function readById(
-  id: number,
-  callback: (userOption: UserOption) => void
-) {
-  createConnection(config)
+function readById(id: number, callback: (userOption: UserOption) => void) {
+  createConnection(options)
     .then(async (connection) => {
       const repository = getRepository(UserOption);
       let userOption = await repository.findOne(id);
@@ -25,8 +36,8 @@ export function readById(
 }
 
 // UPDATE
-export function update(userOption: UserOption) {
-  createConnection(config)
+function update(userOption: UserOption) {
+  createConnection(options)
     .then(async (connection) => {
       await connection.manager.save(userOption);
     })
@@ -34,8 +45,8 @@ export function update(userOption: UserOption) {
 }
 
 // DELETE
-export function deleteById(id: number) {
-  createConnection(config)
+function deleteById(id: number) {
+  createConnection(options)
     .then(async (connection) => {
       await connection.manager.remove(id);
     })

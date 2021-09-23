@@ -2,7 +2,27 @@
 //
 //
 
-export { Game, Player, Board, BetBox, PutBox, Dock, ShowdownAnimation, Score };
+export {
+  User,
+  Game,
+  Player,
+  Board,
+  BetBox,
+  PutBox,
+  Dock,
+  ShowdownAnimation,
+  Score,
+};
+
+type User = {
+  id: number;
+  mail: string;
+  nickname: string;
+  chip: number;
+  symbols: string[];
+  icon_url: string;
+  self_intro: string;
+};
 
 type Game = {
   players: Player[];

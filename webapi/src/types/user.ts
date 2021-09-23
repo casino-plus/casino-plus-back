@@ -17,15 +17,15 @@ export class User extends BaseEntity {
 
   // チップ枚数
   @Column()
-  chip: number;
+  chip: number = 0;
 
   // シンボル配列文字列
   @Column()
-  symbols: string;
+  symbols: string = "";
 
   @Column()
-  created_at: string;
+  created_at: string = new Date().toISOString();
 
   @Column()
-  updated_at: string;
+  updated_at: string = new Date().toISOString();
 }

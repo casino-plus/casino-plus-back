@@ -3,7 +3,7 @@ import { Grid } from "../types/grid";
 import { User } from "../types/user";
 import { UserOption } from "../types/user_option";
 
-export const config: ConnectionOptions = {
+export const options: ConnectionOptions = {
   type: "postgres",
   host: "db",
   port: 5432,

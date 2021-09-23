@@ -1,19 +1,31 @@
-import { createConnection, getRepository } from "typeorm";
-import { config } from "../config/db";
+import { resolve } from "path/posix";
+import { createConnection, getRepository, getConnectionManager } from "typeorm";
+import { options } from "../config/db";
 import { User } from "../types/user";
 
+export { create, readById, update, deleteById };
+
 // CREATE
-export function create(user: User) {
-  createConnection(config)
-    .then(async (connection) => {
-      await connection.manager.save(user);
-    })
-    .catch((error) => console.log(error));
+function create(user: User): Promise<number> {
+  return new Promise((resolve, reject) => {
+    createConnection(options)
+      .then(async (connection) => {
+        await connection.manager.save(user);
+        resolve(user.id);
+      })
+      .catch(async (error) => {
+        if (error.name === "AlreadyHasActiveConnectionError") {
+          const existentConn = getConnectionManager().get("default");
+          await existentConn.manager.save(user);
+          resolve(user.id);
+        }
+      });
+  });
 }
 
 // READ
-export function readById(id: number, callback: (user: User) => void) {
-  createConnection(config)
+function readById(id: number, callback: (user: User) => void) {
+  createConnection(options)
     .then(async (connection) => {
       const repository = getRepository(User);
       let user = await repository.findOne(id);
@@ -23,8 +35,8 @@ export function readById(id: number, callback: (user: User) => void) {
 }
 
 // UPDATE
-export function update(user: User) {
-  createConnection(config)
+function update(user: User) {
+  createConnection(options)
     .then(async (connection) => {
       await connection.manager.save(user);
     })
@@ -32,8 +44,8 @@ export function update(user: User) {
 }
 
 // DELETE
-export function deleteById(id: number) {
-  createConnection(config)
+function deleteById(id: number) {
+  createConnection(options)
     .then(async (connection) => {
       await connection.manager.remove(id);
     })
