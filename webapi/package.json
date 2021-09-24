@@ -14,7 +14,8 @@
         "reflect-metadata": "latest",
         "ts-node": "latest",
         "typeorm": "latest",
-        "uuid": "latest"
+        "uuid": "latest",
+        "dotenv": "latest"
     },
     "devDependencies": {
         "@types/express": "latest",

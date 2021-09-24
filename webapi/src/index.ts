@@ -4,6 +4,10 @@ import express from "express";
 import * as router from "./api/router";
 // test
 import * as test from "./test/test";
+import * as Config from "./config/config";
+
+console.log(`flavor: ${Config.flavor} 環境に接続します`);
+
 const app: express.Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

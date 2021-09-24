@@ -8,6 +8,9 @@ COPY ./package*.json .
 
 RUN npm install
 
+# .envファイルをコピー >> コンテナの/webapi
+COPY ./.env .
+
 # ソースをバンドルする >> コンテナの/webapi/src
 COPY ./src ./src
 
