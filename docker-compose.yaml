@@ -26,7 +26,7 @@ services:
       - /webapi/node_modules # ホスト側には node_modules がなくてもOK "."は不要なので注意
     networks:
       - app-net
-    command: nodemon src/index.ts
+    command: npm run debug
 
 networks:
   app-net:
