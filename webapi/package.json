@@ -4,9 +4,10 @@
     "description": "Server-Side Service for Casino+",
     "author": "casinoplus",
     "scripts": {
-        "start": "nodemon src/index.ts"
+        "start": "ts-node src/index.ts"
     },
     "dependencies": {
+        "dotenv": "latest",
         "express": "latest",
         "mongodb": "latest",
         "multer": "latest",
@@ -14,8 +15,7 @@
         "reflect-metadata": "latest",
         "ts-node": "latest",
         "typeorm": "latest",
-        "uuid": "latest",
-        "dotenv": "latest"
+        "uuid": "latest"
     },
     "devDependencies": {
         "@types/express": "latest",
