@@ -6,7 +6,7 @@ import * as router from "./api/router";
 import * as test from "./test/test";
 import * as Config from "./config/config";
 
-console.log(`flavor: ${Config.flavor} 環境に接続します`);
+console.log(`サーバー環境: ${Config.flavor}`);
 
 const app: express.Express = express();
 app.use(express.json());

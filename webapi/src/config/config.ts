@@ -30,10 +30,10 @@ export const mongoDB: MongoDB = (() => {
     // DEVELOP
     return {
       scheme: "mongodb",
-      user_name: "casinoplus",
-      password: "casinoplus",
+      user_name: "admin",
+      password: "pass",
       host: "mongo:27017",
-      db_name: "casinoplus",
+      db_name: "db",
     };
   }
 })();
@@ -42,12 +42,12 @@ export const dropBox: DropBox = (() => {
   if (flavor == "staging") {
     // STAGING
     return {
-      token: "",
+      token: process.env["DROPBOX_TOKEN"],
     };
   } else {
     // DEVELOP
     return {
-      token: process.env["DROPBOX_TOKEN"],
+      token: "",
     };
   }
 })();

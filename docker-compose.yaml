@@ -2,15 +2,22 @@ version: "3"
 
 services:
   mongo:
-    image: mongo
+    container_name: "mongo"
+    build: ./mongo
     ports:
-      - 27017:27017
+      - "27018:27017"
     volumes:
-      - ./mongo:/data/mongo
-      - ./mongo/init:/docker-entrypoint-initdb.d # ファイルをマウントしてDBを立ち上げた後でSQLを自動実行
+      # - ./mongo/db:/data/db # データを永続化したい時に有効にする
+      # - ./mongo/configdb:/data/configdb
+      - ./mongo/init:/docker-entrypoint-initdb.d
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      MONGO_INITDB_DATABASE: db
+      TZ: Asia/Tokyo
     networks:
-      - app-net # ネットワークを指定して、コンテナ間で通信する
-    command: mongod --quiet --logpath /dev/null # デフォルトのログが多すぎるので抑える
+      - app-net
+    command: --quiet
 
   webapi:
     depends_on:
